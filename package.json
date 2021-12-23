@@ -18,15 +18,20 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:write": "eslint --debug src/ --fix"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "check-staged": "lint-staged",
+    "prettier": "prettier --write \"**/*.{js,scss,json,html}\"",
+    "lint": "eslint \"**/*.js\" -c .eslintrc.json --ext js,jsx"
   },
   "lint-staged": {
-    "*.(js|jsx)": ["npm run lint:write", "git add"]
+    "*.+(js|jsx)": [
+      "eslint --fix"
+    ],
+    "*.+(json|js|scss|css|md)": [
+      "prettier --write"
+    ],
+    "*.scss": [
+      "stylelint --fix"
+    ]
   },
   "eslintConfig": {
     "extends": [
@@ -55,6 +60,10 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "prettier": "2.5.1"
+    "node-sass": "^7.0.0",
+    "prettier": "2.5.1",
+    "stylelint": "^14.2.0",
+    "stylelint-config-recommended-scss": "^5.0.2",
+    "stylelint-scss": "^4.1.0"
   }
 }
